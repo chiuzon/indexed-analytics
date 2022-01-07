@@ -5,12 +5,11 @@ import { observer } from "mobx-react-lite";
 
 const TestComponent = observer(() => {
 
-  const { textFetch: {state, text}} = useStore()
+  
 
   return (
     <>
-        State: {state}
-        Text: {text}
+        Test
     </>
   )
 })

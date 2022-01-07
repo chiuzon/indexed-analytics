@@ -6,6 +6,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@indexed-finance/subgraph-clients": "^0.0.20",
+    "ethers": "^5.5.3",
     "mobx": "^6.3.12",
     "mobx-react-lite": "^3.2.3",
     "react": "^17.0.2",

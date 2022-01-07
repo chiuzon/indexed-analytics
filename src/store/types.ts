@@ -4,7 +4,6 @@ export enum ENetworks {
   testnet = "testnet"
 }
 
-
 export interface IGlobalState {
   currentNetwork: ENetworks,
 }

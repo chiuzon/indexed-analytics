@@ -1,4 +1,4 @@
-import { useStore } from "$/store";
+import { useAppStore, useStore } from "$/store";
 import { ENetworks } from "$/store";
 import { observer } from "mobx-react-lite";
 import { useCallback, useMemo } from "react";
@@ -6,27 +6,27 @@ import { useNavigate } from "react-router-dom";
 
 const NetworkDropdown = observer(() => {
   const navigate = useNavigate()
-  const { currentNetwork, setCurrentNetwork } = useStore()
+  const { activeNetwork, setActiveNetwork } = useAppStore()
 
   const selectNetwork = useCallback((networkId) => {
-    setCurrentNetwork(ENetworks[networkId as ENetworks])
+    setActiveNetwork(ENetworks[networkId as ENetworks])
     navigate(`/${networkId}/`)
   }, [])
 
   const dropdownOptions = useMemo(() => {
 
-    return Object.keys(ENetworks).filter((value) => value !== currentNetwork).map((value) => (
+    return Object.keys(ENetworks).filter((value) => value !== activeNetwork).map((value) => (
       <li key={value} onClick={() => selectNetwork(value)}>
         <a className="uppercase">{value}</a>
       </li>
     ))
-  }, [currentNetwork])
+  }, [activeNetwork])
   
   return (
     <>
       <div className="dropdown dropdown-end  dropdown-hover">
         <div tabIndex={0} className="m-1 btn">
-          {currentNetwork}
+          {activeNetwork}
         </div>
         <ul
           tabIndex={0}
