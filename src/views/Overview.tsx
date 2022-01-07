@@ -1,19 +1,15 @@
-import { useStore } from "$/store"
-import { observer } from "mobx-react-lite"
-import { useEffect } from "react"
+import { useStore } from "$/store";
+import { observer } from "mobx-react-lite";
+import { useEffect } from "react";
 
-const Overview = observer(() => {
-
-  useEffect(() => {
-    
-  }, [])
+const OverviewView = observer(() => {
+  useEffect(() => {}, []);
 
   return (
     <>
       <h1>HelloWorld</h1>
-
     </>
-  )
-})
+  );
+});
 
-export default Overview
+export default OverviewView;

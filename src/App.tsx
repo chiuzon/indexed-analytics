@@ -1,36 +1,39 @@
-import { FC, useEffect, useState } from 'react'
-import {
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Providers from './Providers'
-import Layout from './components/Layout'
+import Providers from "./Providers";
+import Layout from "./components/Layout";
 
-import Overview from './views/Overview';
-import IndexPools from './views/IndexPools';
-import RouteWrapper from './components/Wrappers/RouteWrapper';
+import OverviewView from "./views/Overview";
+import IndexPoolsView from "./views/IndexPools";
+import RouteWrapper from "./components/Wrappers/RouteWrapper";
+import { observer } from "mobx-react-lite";
 
-function App() {
+const App = observer(() => {
   return (
-    <Providers >
+    <Providers>
       <BrowserRouter>
         <Layout>
           <Routes>
-            <Route path="/" element={
-              <RouteWrapper />
-            } />
+            <Route path="/" element={<RouteWrapper />} />
             <Route path=":network">
-                <Route index element={<RouteWrapper children={<Overview />} />} />
-                <Route path="pools" element={<RouteWrapper children={<IndexPools />} />} />
-                <Route path="pool/:poolId" element={<RouteWrapper children={<IndexPools />} />} />
+              <Route
+                index
+                element={<RouteWrapper children={<OverviewView />} />}
+              />
+              <Route
+                path="pools"
+                element={<RouteWrapper children={<IndexPoolsView />} />}
+              />
+              <Route
+                path="pool/:poolId"
+                element={<RouteWrapper children={<OverviewView />} />}
+              />
             </Route>
           </Routes>
         </Layout>
       </BrowserRouter>
     </Providers>
-  )
-}
+  );
+});
 
-export default App
+export default App;
