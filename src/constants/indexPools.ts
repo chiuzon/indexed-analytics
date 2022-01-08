@@ -1,9 +1,9 @@
 import { ENetworks } from "$/store";
-
-const IndexPools = {
+import { IIndexPools } from "./types";
+const IndexPools: IIndexPools = {
   [ENetworks.ethereum]: {
     "0x126c121f99e1e211df2e5f8de2d96fa36647c855": {
-      ndx: "degen-index",
+      ndxId: "degen-index",
       ticker: "DEGEN",
       name: "DEGEN Index",
       description:
@@ -25,8 +25,8 @@ const IndexPools = {
     },
   },
   [ENetworks.testnet]: {
-    "": {
-      ndx: "degen-index",
+    "0x68bb81b3f67f7aab5fd1390ecb0b8e1a806f2465": {
+      ndxId: "degen-index",
       ticker: "DEGEN",
       name: "DEGEN Index",
       description:

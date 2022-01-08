@@ -9,8 +9,10 @@ const IndexPoolsView = observer(() => {
   const { activeNetwork } = useAppStore();
 
   const indexPoolsList = useMemo(() => {
-    return Object.keys(IndexPools[activeNetwork]).map((poolId) => (
+    return Object.keys(IndexPools[activeNetwork]).map((poolId, index) => (
       <IndexPoolsListElement
+        key={poolId}
+        index={index}
         indexPoolId={poolId}
         activeNetwork={activeNetwork}
       />
