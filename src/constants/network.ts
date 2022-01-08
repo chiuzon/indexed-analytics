@@ -11,5 +11,9 @@ export const NetworksData: INetworksData = {
       id: "Qmca1arSe9U94sHVpzzdUKizNyqFddsXnBZYqkALmSdSRE",
       url: "https://api.thegraph.com/subgraphs/name/indexed-finance/indexed",
     },
+    uniSubgraph: {
+      id: "",
+      url: "",
+    },
   },
 };

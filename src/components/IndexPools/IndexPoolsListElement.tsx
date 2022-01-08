@@ -1,10 +1,7 @@
-import { useV1SubgraphClients } from "$/hooks/useSubgraphClient";
 import { ENetworks } from "$/store";
 import { observer } from "mobx-react-lite";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import LoadingComponent from "$/components/LoadingComponent";
-
-import useQuery from "$/hooks/useQuery";
 import { gql } from "graphql-request";
 import IndexPools from "$/constants/indexPools";
 import useSWR from "swr";
@@ -37,17 +34,50 @@ const IndexPoolsListElement = observer<IndexPoolsListElementProps>(
 
     const { name } = IndexPools[activeNetwork][indexPoolId];
 
-    useEffect(() => {
-      console.log(error);
-      console.log(data);
+    const totalVolumeUSD = useMemo(() => {
+      if (data?.indexPool.totalVolumeUSD) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          maximumFractionDigits: 0,
+        }).format(data?.indexPool.totalVolumeUSD);
+      } else {
+        return <LoadingComponent />;
+      }
     }, [data]);
 
+    const totalValueLockedUSD = useMemo(() => {
+      if (data?.indexPool.totalValueLockedUSD) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          maximumFractionDigits: 0,
+        }).format(data?.indexPool.totalValueLockedUSD);
+      } else {
+        return <LoadingComponent />;
+      }
+    }, [data]);
+
+    //Logging
+    useEffect(() => {
+      if (error) {
+        console.error(`[${IndexPoolsListElement.name}]: ${error}`);
+      }
+    }, [data]);
+
+    const onPoolClicked = useCallback(() => {
+      console.log(indexPoolId);
+    }, []);
+
     return (
-      <tr>
+      <tr
+        onClick={onPoolClicked}
+        className="hover:drop-shadow-md hover:cursor-pointer rounded-md select-none"
+      >
         <td>{index!}</td>
         <td>{name}</td>
-        <td>{data?.indexPool.totalVolumeUSD}</td>
-        <td></td>
+        <td>{totalVolumeUSD}</td>
+        <td>{totalValueLockedUSD}</td>
       </tr>
     );
   }

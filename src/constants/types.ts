@@ -9,6 +9,10 @@ export interface INetworksData {
       id: string;
       url: string;
     };
+    uniSubgraph: {
+      id: string;
+      url: string;
+    };
   };
 }
 

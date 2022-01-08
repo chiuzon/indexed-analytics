@@ -25,13 +25,13 @@ const IndexPoolsView = observer(() => {
         <h1 className="text-primary-content text-2xl p-5">Index Pools</h1>
         <hr className="p-2" />
         <div className="overflow-x-auto">
-          <table className="table w-full">
+          <table className="table w-full border-separate table-auto">
             <thead>
               <tr>
                 <th></th>
                 <th>Name</th>
-                <th>Price</th>
-                <th>TVL</th>
+                <th>Total Volume USD</th>
+                <th>Total Value Locked (TVL) USD</th>
               </tr>
             </thead>
             <tbody>{indexPoolsList}</tbody>
