@@ -1,3 +1,4 @@
+import useClientSize from "$/hooks/useElementSize";
 import { useStore } from "$/store";
 import { Chart, registerables } from "chart.js";
 import { observer } from "mobx-react-lite";
@@ -60,39 +61,7 @@ const data = [
 
 const OverviewView = observer(() => {
   const chartContainerRef = useRef<HTMLDivElement>(null);
-  const [chartProps, setChartProps] = useState({
-    width: 100,
-    height: 100,
-  });
-
-  const updateSize = useCallback(
-    (width: number, height: number) => {
-      setChartProps({
-        width,
-        height,
-      });
-    },
-    [setChartProps]
-  );
-
-  useEffect(() => {
-    function onResize() {
-      if (chartContainerRef.current) {
-        updateSize(
-          chartContainerRef.current.clientWidth,
-          chartContainerRef.current.clientHeight
-        );
-      }
-    }
-
-    window.addEventListener("resize", onResize);
-
-    onResize();
-
-    return () => {
-      window.removeEventListener("resize", onResize);
-    };
-  }, [chartContainerRef!.current]);
+  const [containerWidth, containerHeight] = useClientSize(chartContainerRef);
 
   const mouseOver = useCallback((e) => {
     console.log(e);
@@ -110,8 +79,8 @@ const OverviewView = observer(() => {
           <div className="text-primary text-3xl font-semibold">$3.71b</div>
           <div ref={chartContainerRef} className=" h-64">
             <LineChart
-              width={chartProps.width}
-              height={chartProps.height}
+              width={containerWidth}
+              height={containerHeight}
               data={data}
             >
               <Line
