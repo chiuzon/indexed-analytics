@@ -10,7 +10,7 @@ import { gql } from "graphql-request";
         }
  */
 
-export const generateDailySnaposhootQuery = (
+export const generateDailySnapshootQuery = (
   ids: string[],
   output: string[]
 ) => {

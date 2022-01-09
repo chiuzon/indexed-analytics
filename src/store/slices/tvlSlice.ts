@@ -1,4 +1,4 @@
-import { generateDailySnaposhootQuery } from "./../../helpers/generatorHelper";
+import { generateDailySnapshootQuery } from "./../../helpers/generatorHelper";
 import { gql } from "graphql-request";
 import { createFetcher } from "$/helpers/fetcherHelper";
 import { makeAutoObservable } from "mobx";
@@ -29,7 +29,7 @@ export default class TVLSlice {
     //   console.log(data);
     // });
 
-    const query = generateDailySnaposhootQuery(
+    const query = generateDailySnapshootQuery(
       [
         "0x126c121f99e1e211df2e5f8de2d96fa36647c855",
         "0x68bb81b3f67f7aab5fd1390ecb0b8e1a806f2465",
