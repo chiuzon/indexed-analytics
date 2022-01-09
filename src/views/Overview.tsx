@@ -1,6 +1,4 @@
 import useClientSize from "$/hooks/useElementSize";
-import { useStore } from "$/store";
-import { Chart, registerables } from "chart.js";
 import { observer } from "mobx-react-lite";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
@@ -13,6 +11,8 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+
+import { useTVLSlice } from "$/store";
 
 const data = [
   {
@@ -62,6 +62,12 @@ const data = [
 const OverviewView = observer(() => {
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, containerHeight] = useClientSize(chartContainerRef);
+
+  const { fetchTVL } = useTVLSlice();
+
+  useEffect(() => {
+    fetchTVL();
+  }, []);
 
   const mouseOver = useCallback((e) => {
     console.log(e);
