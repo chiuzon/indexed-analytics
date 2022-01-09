@@ -33,9 +33,20 @@ export const generateDailySnapshootQuery = (
   `
   );
 
-  return `
-    query (${argumentsWithTypes.join(",")}){
-      ${_c.join("\n")}
-    }
-  `;
+  return {
+    query: `
+      query (${argumentsWithTypes.join(",")}){
+        ${_c.join("\n")}
+      }
+    `,
+    params: () => {
+      const obj: { [key: string]: string } = {};
+
+      ids.forEach((value, index) => {
+        obj[`id_${index}`] = value;
+      });
+
+      return obj;
+    },
+  };
 };
